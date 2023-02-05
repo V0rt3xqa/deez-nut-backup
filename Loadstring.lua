@@ -2,7 +2,7 @@ a = pcall(function()
       if shared.DNutLoaded then
          error("Already loaded!")
          else
-          loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Dnut%20config"))()
+          loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/deez-nut-backup/main/Dnut%20config"))()
        end
             print(shared.DNutLoaded)
 end)
