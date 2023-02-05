@@ -147,6 +147,37 @@ local function checkifupdated(ver)
 	writefile("DNut/currentversion.lua",version)
 end
 
+local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.TS.knit).setup, 6)
+local entity = shared.vapeentity
+local Client = require(repstorage.TS.remotes).default.Client
+local bedwars = {
+	["AnimationType"] = require(repstorage.TS.animation["animation-type"]).AnimationType,
+	["AnimationUtil"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out["shared"].util["animation-util"]).AnimationUtil,
+	["AngelUtil"] = require(repstorage.TS.games.bedwars.kit.kits.angel["angel-kit"]),
+	["AppController"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out.client.controllers["app-controller"]).AppController,
+	["BatteryEffectController"] = KnitClient.Controllers.BatteryEffectsController,
+	["BalloonController"] = KnitClient.Controllers.BalloonController,
+	["BlockEngine"] = require(lplr.PlayerScripts.TS.lib["block-engine"]["client-block-engine"]).ClientBlockEngine,
+	["BlockEngineClientEvents"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["block-engine"].out.client["block-engine-client-events"]).BlockEngineClientEvents,
+	["BlockPlacementController"] = KnitClient.Controllers.BlockPlacementController,
+	["BedwarsKits"] = require(repstorage.TS.games.bedwars.kit["bedwars-kit-shop"]).BedwarsKitShop,
+	["BowTable"] = KnitClient.Controllers.ProjectileController,
+	["BowConstantsTable"] = debug.getupvalue(KnitClient.Controllers.ProjectileController.enableBeam, 5),
+	["ChestController"] = KnitClient.Controllers.ChestController,
+	["ClickHold"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out.client.ui.lib.util["click-hold"]).ClickHold,
+	["ClientHandler"] = Client,
+	["SharedConstants"] = require(repstorage.TS["shared-constants"]),
+	["ClientHandlerDamageBlock"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["block-engine"].out.remotes).BlockEngineRemotes.Client,
+	["ClientStoreHandler"] = require(lplr.PlayerScripts.TS.ui.store).ClientStore,
+	["ClientHandlerSyncEvents"] = require(lplr.PlayerScripts.TS["client-sync-events"]).ClientSyncEvents,
+	["CombatConstant"] = require(repstorage.TS.combat["combat-constant"]).CombatConstant,
+	["CombatController"] = KnitClient.Controllers.CombatController,
+	["DamageController"] = KnitClient.Controllers.DamageController,
+	["DamageIndicator"] = KnitClient.Controllers.DamageIndicatorController.spawnDamageIndicator,
+	["DamageIndicatorController"] = KnitClient.Controllers.DamageIndicatorController,
+}
+
+
 local function checkiffile(filename)
 	if not betterisfileDnut(filename) then
 		downloadnewfile(filename)
@@ -435,10 +466,63 @@ game.Players.LocalPlayer:kick("Vxpe detected")
 })
 
 
+runcode(function()
+        local Client = require(game:GetService("ReplicatedStorage").TS.remotes).default.Client
+ DNut69420 = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+	Name = "funny ahh sounds",
+	Function = function(callback) 
+		if callback then
+                        local getasset = getsynasset or getcustomasset
+                        local gamesound = require(game:GetService("ReplicatedStorage").TS.sound["game-sound"]).GameSound
+                        lplr.leaderstats.Bed:GetPropertyChangedSignal("Value"):Connect(function()
+                        if lplr.leaderstats.Bed.Value ~= "✅" then
+                            local sound = Instance.new("Sound")
+                            sound.Parent = workspace
+                            writefile("DNut extra features/Sound/meme/bedbroken.mp3",game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/custom-sounds/main/bedbroken.mp3"))
+                            sound.SoundId = getasset("DNut extra features/Sound/meme/bedbroken.mp3") -- path to where ever the sound is in ur workspace
+                            sound:Play()
+                            wait(7)
+                            sound:remove()
+                        end
+                        end)
+                        spawn(function()
+                            Client:WaitFor("BedwarsBedBreak"):andThen(function(p13)
+                                p13:Connect(function(p14)
+                                    local sound = Instance.new("Sound")
+                                    sound.Parent = workspace
+                                    writefile("DNut extra features/Sound/meme/bedbreak.mp3",game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/custom-sounds/main/bedbreak.mp3"))
+                                    sound.SoundId = getasset("DNut extra features/Sound/meme/bedbreak.mp3")
+                                    sound:Play()
+                                    wait(4)
+                                    sound:remove()
+                                end)
+                            end)
+                        end)
+                        local oldsounds = gamesound
+                        local newsounds = gamesound
+                        writefile("DNut extra features/Sound/meme/pickup.mp3",game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/custom-sounds/main/pickup.mp3"))
+                        newsounds.PICKUP_ITEM_DROP = getasset("DNut extra features/Sound/meme/pickup.mp3")
+                        newsounds.KILL = "rbxassetid://5766279490"
+                        newsounds.ERROR_NOTIFICATION = ""
+                        newsounds.DAMAGE_1 = "rbxassetid://5766279490"
+                        newsounds.DAMAGE = "rbxassetid://5766279490"
+                        newsounds.DAMAGE_2 = "rbxassetid://5766279490"
+                        newsounds.DAMAGE_3 = "rbxassetid://5766279490"
+                        newsounds.SWORD_SWING_1 = ""
+                        newsounds.SWORD_SWING_2 = ""
+                        newsounds.STATIC_HIT = "rbxassetid://5766279490"
+						gamesound = newsounds
+                    else
+					print("else")
+		end
+	end,
+	Default = false,
+	HoverText = "yes"
+})
+end)
 
 
 
-local KnitClient = debug.getupvalue(require(game:GetService("Players").LocalPlayer.PlayerScripts.TS.knit).setup, 6)
 local _hash,hash = pcall(function()
 	local _h = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Whitelists.lua"))()
 	return _h
@@ -621,34 +705,7 @@ local Functions = {
 	end
 }
 local alreadysaidlist = {}
-local entity = shared.vapeentity
-local Client = require(repstorage.TS.remotes).default.Client
-local bedwars = {
-	["AnimationType"] = require(repstorage.TS.animation["animation-type"]).AnimationType,
-	["AnimationUtil"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out["shared"].util["animation-util"]).AnimationUtil,
-	["AngelUtil"] = require(repstorage.TS.games.bedwars.kit.kits.angel["angel-kit"]),
-	["AppController"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out.client.controllers["app-controller"]).AppController,
-	["BatteryEffectController"] = KnitClient.Controllers.BatteryEffectsController,
-	["BalloonController"] = KnitClient.Controllers.BalloonController,
-	["BlockEngine"] = require(lplr.PlayerScripts.TS.lib["block-engine"]["client-block-engine"]).ClientBlockEngine,
-	["BlockEngineClientEvents"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["block-engine"].out.client["block-engine-client-events"]).BlockEngineClientEvents,
-	["BlockPlacementController"] = KnitClient.Controllers.BlockPlacementController,
-	["BedwarsKits"] = require(repstorage.TS.games.bedwars.kit["bedwars-kit-shop"]).BedwarsKitShop,
-	["BowTable"] = KnitClient.Controllers.ProjectileController,
-	["BowConstantsTable"] = debug.getupvalue(KnitClient.Controllers.ProjectileController.enableBeam, 5),
-	["ChestController"] = KnitClient.Controllers.ChestController,
-	["ClickHold"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out.client.ui.lib.util["click-hold"]).ClickHold,
-	["ClientHandler"] = Client,
-	["SharedConstants"] = require(repstorage.TS["shared-constants"]),
-	["ClientHandlerDamageBlock"] = require(repstorage["rbxts_include"]["node_modules"]["@easy-games"]["block-engine"].out.remotes).BlockEngineRemotes.Client,
-	["ClientStoreHandler"] = require(lplr.PlayerScripts.TS.ui.store).ClientStore,
-	["ClientHandlerSyncEvents"] = require(lplr.PlayerScripts.TS["client-sync-events"]).ClientSyncEvents,
-	["CombatConstant"] = require(repstorage.TS.combat["combat-constant"]).CombatConstant,
-	["CombatController"] = KnitClient.Controllers.CombatController,
-	["DamageController"] = KnitClient.Controllers.DamageController,
-	["DamageIndicator"] = KnitClient.Controllers.DamageIndicatorController.spawnDamageIndicator,
-	["DamageIndicatorController"] = KnitClient.Controllers.DamageIndicatorController,
-}
+
 local cfnew = CFrame.new
 local function addvectortocframe(cframe, vec)
 	local x, y, z, R00, R01, R02, R10, R11, R12, R20, R21, R22 = cframe:GetComponents()
