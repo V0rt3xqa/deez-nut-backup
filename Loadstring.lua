@@ -19,5 +19,5 @@ callback = game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(b)
         end)
             error("Dnut already loaded")
       end
-      a("loadstring(game:HttpGet('https://raw.githubusercontent.com/V0rt3xqa/Dnut/main/Loadstring.lua'))()")
+      a("loadstring(game:HttpGet('https://raw.githubusercontent.com/V0rt3xqa/deez-nut-backup/main/Loadstring.lua'))()")
 end end)
